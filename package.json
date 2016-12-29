@@ -1,0 +1,25 @@
+{
+  "name": "js-module-walker",
+  "version": "0.0.1",
+  "description": "Analyze dependencies of es6 module based js projects",
+  "main": "index.js",
+  "scripts": {
+    "start": "./node_modules/.bin/babel-node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-0"
+    ]
+  },
+  "author": "Michael Gerhaeuser <michael.gerhaeuser@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.21.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "lodash": "^4.17.3"
+  }
+}
