@@ -11,7 +11,10 @@ import { printDot } from "./lib/printDot";
 function main(root) {
     if (root === undefined) {
         console.error(`No path given.`);
-        process.exit(1);
+        cli.outputHelp((helpText) => {
+            console.log(helpText);
+            process.exit(1);
+        });
     }
 
     const absolutePath = path.resolve(root);
@@ -22,5 +25,6 @@ function main(root) {
 }
 
 cli.arguments('<path>', 'Path to the project to analyze', )
-    .action(main)
     .parse(process.argv);
+
+main(cli.args[0]);
