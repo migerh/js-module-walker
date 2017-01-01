@@ -17,6 +17,13 @@
       "stage-0"
     ]
   },
+  "bugs": {
+    "url": "https://github.com/migerh/js-module-walker/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/migerh/js-module-walker.git"
+  },
   "author": "Michael Gerhaeuser <michael.gerhaeuser@gmail.com>",
   "license": "MIT",
   "dependencies": {
