@@ -1,0 +1,11 @@
+language: ruby
+rvm:
+  - 2.3.0
+
+install:
+  - bundle install
+  - nvm install stable
+  - npm install
+
+script:
+  - ./tests.sh
