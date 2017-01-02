@@ -1,17 +1,15 @@
 #!/bin/sh
 
-declare -i RESULT=0
-
 # unit tests
 
 ./node_modules/.bin/ava
-RESULT+=$?
+UNIT=$?
 
 # end2end tests
 
 npm run build
 npm link
 cucumber
-RESULT+=$?
+END2END=$?
 
-exit $RESULT
+exit $(($UNIT + $END2END))
