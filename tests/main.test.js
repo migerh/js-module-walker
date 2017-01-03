@@ -42,7 +42,7 @@ test('throws an exception if no path is returned by the ConfigurationLoader', t 
     const cliArgs = {};
     t.context.ConfigurationLoader.fromCLI.returns({});
 
-    t.throws(() => main(cliArgs, t.context), Error, 'No path given.');
+    t.throws(() => main(cliArgs, t.context), Error, 'No input given.');
 });
 
 test('uses walkSync to collect source files', t => {

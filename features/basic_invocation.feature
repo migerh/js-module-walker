@@ -4,7 +4,7 @@ Feature: Basic invocation
     When I run `js-module-walker`
     Then the output should contain:
     """
-    No path given.
+    No input given.
     """
 
   Scenario: Run with a path provided
