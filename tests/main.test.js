@@ -6,9 +6,10 @@ import main from '../lib/main';
 
 test.beforeEach(t => {
     const Configuration = {
-            path: 'somePath'
+            paths: ['somePath']
         },
-        walkSyncResult = ['file1.js', 'file2.js'],
+        collectResult = ['file1.js', 'file2.js'],
+        findBaseDirResult = 'somePath',
         parseImportsResult = [{file: 'file1.js', imports: ['file2.js']}, {file: 'file2.js', imports: []}];
 
     t.context = _.merge(t.context, {
@@ -16,8 +17,10 @@ test.beforeEach(t => {
             fromCLI: sinon.stub().returns(Configuration)
         },
         Configuration,
-        walkSync: sinon.stub().returns(walkSyncResult),
-        walkSyncResult,
+        collect: sinon.stub().returns(collectResult),
+        collectResult,
+        findBaseDir: sinon.stub().returns(findBaseDirResult),
+        findBaseDirResult,
         parseImports: sinon.stub().returns([{file: 'file1.js', imports: ['file2.js']}, {file: 'file2.js', imports: []}]),
         parseImportsResult,
         printDot: sinon.stub().returns()
@@ -40,20 +43,20 @@ test('throws an exception if no path is returned by the ConfigurationLoader', t 
     t.plan(1);
 
     const cliArgs = {};
-    t.context.ConfigurationLoader.fromCLI.returns({});
+    t.context.ConfigurationLoader.fromCLI.returns({paths: []});
 
     t.throws(() => main(cliArgs, t.context), Error, 'No input given.');
 });
 
-test('uses walkSync to collect source files', t => {
+test('uses collect to collect source files', t => {
     t.plan(2);
 
     const cliArgs = {};
 
     main(cliArgs, t.context);
 
-    const walkSync = t.context.walkSync;
-    t.true(walkSync.calledWith(sinon.match(t.context.Configuration.path)));
+    const walkSync = t.context.collect;
+    t.true(walkSync.calledWith(t.context.Configuration.paths));
     t.true(walkSync.calledOnce);
 });
 
@@ -65,7 +68,7 @@ test('uses import parser to collect imports', t => {
     main(cliArgs, t.context);
 
     const parseImports = t.context.parseImports;
-    t.true(parseImports.calledWith(t.context.walkSyncResult));
+    t.true(parseImports.calledWith(t.context.collectResult));
     t.true(parseImports.calledOnce);
 });
 

@@ -29,3 +29,14 @@ Feature: js-module-walker collects files
     """
     "sub/file1.js" -> "file2.js"
     """
+
+  Scenario: A list of files can be given
+    When I run `js-module-walker ./source/file2.js ./source/sub/file1.js`
+    Then the output should contain:
+    """
+    "file2.js" -> "sub/file1.js"
+    """
+    And the output should contain:
+    """
+    "sub/file1.js" -> "file2.js"
+    """

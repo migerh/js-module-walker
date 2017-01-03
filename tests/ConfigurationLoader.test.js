@@ -22,9 +22,9 @@ test('#fromCLI returns an object', t => {
 test('#fromCLI result contains the path if one is given', t => {
     t.plan(2);
 
-    const expectedPath = 'somePath',
+    const expectedPath = ['somePath'],
         result = ConfigurationLoader.fromCLI(t.context.cliArgs);
 
-    t.true(_.has('path', result));
-    t.is(result.path, expectedPath)
+    t.true(_.has('paths', result));
+    t.deepEqual(result.paths, expectedPath)
 });

@@ -3,15 +3,15 @@
 import cli from 'commander';
 import main from './lib/main';
 import {ConfigurationLoader} from './lib/ConfigurationLoader';
-import {walkSync} from './lib/collectInput';
+import {collect,findBaseDir} from './lib/collectInput';
 import {parseImports} from './lib/parseImports';
 import {printDot} from './lib/printDot';
 
-cli.arguments('<path>', 'Path to the project to analyze', )
+cli.arguments('<files>', 'Files or folders containing files of the project to analyze', )
     .parse(process.argv);
 
 try {
-    main(cli, {ConfigurationLoader, walkSync, parseImports, printDot});
+    main(cli, {ConfigurationLoader, collect, findBaseDir, parseImports, printDot});
 } catch (e) {
     console.error(`An error occurred: ${e}`);
 
