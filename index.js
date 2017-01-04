@@ -7,7 +7,7 @@ import {collect,findBaseDir} from './lib/collectInput';
 import {parseImports} from './lib/parseImports';
 import {printDot} from './lib/printDot';
 
-cli.arguments('<files>', 'Files or folders containing files of the project to analyze', )
+cli.arguments('<files>', 'Files or folders containing files of the project to analyze')
     .parse(process.argv);
 
 try {
