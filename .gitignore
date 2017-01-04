@@ -3,3 +3,5 @@ node_modules
 build
 .bundle
 tmp/
+.nyc_output
+coverage/

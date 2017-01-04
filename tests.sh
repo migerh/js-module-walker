@@ -2,7 +2,7 @@
 
 # unit tests
 
-./node_modules/.bin/ava
+./node_modules/.bin/nyc ./node_modules/.bin/ava
 UNIT=$?
 
 # end2end tests

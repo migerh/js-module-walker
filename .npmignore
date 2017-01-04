@@ -1,3 +1,5 @@
 .bundle/
 features/
 tmp/
+.nyc_output/
+coverage/
