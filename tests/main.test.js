@@ -5,7 +5,7 @@ import _ from 'lodash/fp';
 import main from '../lib/main';
 
 test.beforeEach(t => {
-    const Configuration = {
+    const configuration = {
             paths: ['somePath']
         },
         collectResult = ['file1.js', 'file2.js'],
@@ -13,10 +13,8 @@ test.beforeEach(t => {
         parseImportsResult = [{file: 'file1.js', imports: ['file2.js']}, {file: 'file2.js', imports: []}];
 
     t.context = _.merge(t.context, {
-        ConfigurationLoader: {
-            fromCLI: sinon.stub().returns(Configuration)
-        },
-        Configuration,
+        loadConfigFromCLI: sinon.stub().returns(configuration),
+        configuration,
         collect: sinon.stub().returns(collectResult),
         collectResult,
         findBaseDir: sinon.stub().returns(findBaseDirResult),
@@ -34,16 +32,16 @@ test('loads configuration with ConfigurationLoader', t => {
 
     main(cliArgs, t.context);
 
-    const ConfigurationLoader = t.context.ConfigurationLoader;
-    t.true(ConfigurationLoader.fromCLI.calledWith(cliArgs));
-    t.true(ConfigurationLoader.fromCLI.calledOnce);
+    const loadConfigFromCLI = t.context.loadConfigFromCLI;
+    t.true(loadConfigFromCLI.calledWith(cliArgs));
+    t.true(loadConfigFromCLI.calledOnce);
 });
 
 test('throws an exception if no path is returned by the ConfigurationLoader', t => {
     t.plan(1);
 
     const cliArgs = {};
-    t.context.ConfigurationLoader.fromCLI.returns({paths: []});
+    t.context.loadConfigFromCLI.returns({paths: []});
 
     t.throws(() => main(cliArgs, t.context), Error, 'No input given.');
 });
@@ -56,7 +54,7 @@ test('uses collect to collect source files', t => {
     main(cliArgs, t.context);
 
     const walkSync = t.context.collect;
-    t.true(walkSync.calledWith(t.context.Configuration.paths));
+    t.true(walkSync.calledWith(t.context.configuration.paths));
     t.true(walkSync.calledOnce);
 });
 

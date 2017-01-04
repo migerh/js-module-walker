@@ -1,7 +1,7 @@
 import test from 'ava';
 import _ from 'lodash/fp';
 
-import {ConfigurationLoader} from '../lib/ConfigurationLoader';
+import {loadConfigFromCLI} from '../lib/configuration';
 
 test.beforeEach(t => {
     t.context = _.merge(t.context, {
@@ -14,7 +14,7 @@ test.beforeEach(t => {
 test('#fromCLI returns an object', t => {
     t.plan(1);
 
-    const result = ConfigurationLoader.fromCLI();
+    const result = loadConfigFromCLI();
 
     t.true(_.isObject(result));
 });
@@ -23,7 +23,7 @@ test('#fromCLI result contains the path if one is given', t => {
     t.plan(2);
 
     const expectedPath = ['somePath'],
-        result = ConfigurationLoader.fromCLI(t.context.cliArgs);
+        result = loadConfigFromCLI(t.context.cliArgs);
 
     t.true(_.has('paths', result));
     t.deepEqual(result.paths, expectedPath)
