@@ -1,5 +1,10 @@
 #!/usr/bin/env node
 
+// reason: this is the main entry to the module walker. if something
+// goes wrong it has to decide what exit code to return. hence, it
+// has to be able to use process.exit()
+/* eslint no-process-exit: "off" */
+
 import cli from 'commander';
 import main from './lib/main';
 import {loadConfigFromCLI} from './lib/configuration';
