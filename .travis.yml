@@ -9,3 +9,6 @@ install:
 
 script:
   - ./tests.sh
+
+after_success:
+  - ./report_coverage.sh
