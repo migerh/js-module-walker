@@ -3,7 +3,7 @@
 // reason: this is the main entry to the module walker. if something
 // goes wrong it has to decide what exit code to return. hence, it
 // has to be able to use process.exit()
-/* eslint no-process-exit: "off" */
+/* eslint no-process-exit: 0 */
 
 import cli from 'commander';
 import main from './lib/main';
