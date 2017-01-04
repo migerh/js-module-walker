@@ -1,4 +1,4 @@
 #!/bin/sh
 
-npm install -g codeclimate-test-reporter
-codeclimate-test-reporter < ./coverage/lcov.info
+npm install codeclimate-test-reporter
+./node_modules/.bin/codeclimate-test-reporter < ./coverage/lcov.info
