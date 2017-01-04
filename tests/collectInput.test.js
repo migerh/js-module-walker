@@ -105,3 +105,14 @@ test('#findBaseDir returns "/" if no files are given', t => {
 
     t.is(output, expectedOutput);
 });
+
+test('#findBaseDir returns the directory of a single file', t => {
+    t.plan(1);
+
+    const input = ['/some/source/file.js'],
+        expectedOutput = '/some/source';
+
+    const output = findBaseDir(input);
+
+    t.is(output, expectedOutput);
+});
