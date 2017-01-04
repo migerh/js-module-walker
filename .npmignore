@@ -3,3 +3,4 @@ features/
 tmp/
 .nyc_output/
 coverage/
+npm-debug.log
