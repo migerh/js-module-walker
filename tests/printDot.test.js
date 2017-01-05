@@ -1,15 +1,12 @@
 import test from 'ava';
 import _ from 'lodash/fp';
+import {WritableStreamBuffer} from 'stream-buffers';
 
 import {printDot} from '../lib/printDot';
 
 test.beforeEach(t => {
-    let buffer = '';
-    const emitter = v => buffer += v + '\n';
-
     t.context = _.merge(t.context, {
-        getBuffer: () => buffer,
-        emitter
+        buffer: new WritableStreamBuffer()
     });
 });
 
@@ -23,7 +20,7 @@ test('converts the dependency list into a directed graph in graphviz dot format'
 }
 `;
 
-    printDot(input, t.context.emitter);
+    printDot(input, t.context.buffer);
 
-    t.is(t.context.getBuffer(), expectedOutput);
+    t.is(t.context.buffer.getContentsAsString('utf8'), expectedOutput);
 });

@@ -64,7 +64,8 @@
   "license": "MIT",
   "dependencies": {
     "commander": "^2.9.0",
-    "lodash": "^4.17.3"
+    "lodash": "^4.17.3",
+    "stream-buffers": "^3.0.1"
   },
   "devDependencies": {
     "ava": "^0.17.0",
