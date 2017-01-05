@@ -46,3 +46,10 @@ Feature: js-module-walker supports several formats in which it presents its resu
       "file2.js" -> "fs"
     }
     """
+
+  Scenario: If the target directory does not exist the tool display an error
+    When I run `js-module-walker -o ./not-existing/dependencies.dot ./source/file2.js`
+    Then the output should contain:
+    """
+    Error: ENOENT: no such file or directory
+    """
