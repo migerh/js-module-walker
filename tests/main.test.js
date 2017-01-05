@@ -25,57 +25,62 @@ test.beforeEach(t => {
     });
 });
 
-test('loads configuration with ConfigurationLoader', t => {
+test('loads configuration with ConfigurationLoader', async t => {
     t.plan(2);
 
     const cliArgs = {args: ['somePath']};
 
-    main(cliArgs, t.context);
+    await main(cliArgs, t.context);
 
     const loadConfigFromCLI = t.context.loadConfigFromCLI;
     t.true(loadConfigFromCLI.calledWith(cliArgs));
     t.true(loadConfigFromCLI.calledOnce);
 });
 
-test('throws an exception if no path is returned by the ConfigurationLoader', t => {
+test('throws an exception if no path is returned by the ConfigurationLoader', async t => {
     t.plan(1);
 
     const cliArgs = {};
     t.context.loadConfigFromCLI.returns({paths: []});
 
-    t.throws(() => main(cliArgs, t.context), Error, 'No input given.');
+    try {
+        await main(cliArgs, t.context);
+        t.fail();
+    } catch (error) {
+        t.true(error.message.indexOf('No input given') > -1);
+    }
 });
 
-test('uses collect to collect source files', t => {
+test('uses collect to collect source files', async t => {
     t.plan(2);
 
     const cliArgs = {};
 
-    main(cliArgs, t.context);
+    await main(cliArgs, t.context);
 
     const walkSync = t.context.collect;
     t.true(walkSync.calledWith(t.context.configuration.paths));
     t.true(walkSync.calledOnce);
 });
 
-test('uses import parser to collect imports', t => {
+test('uses import parser to collect imports', async t => {
     t.plan(2);
 
     const cliArgs = {};
 
-    main(cliArgs, t.context);
+    await main(cliArgs, t.context);
 
     const parseImports = t.context.parseImports;
     t.true(parseImports.calledWith(t.context.collectResult));
     t.true(parseImports.calledOnce);
 });
 
-test('uses printDot to emit the dependency graph', t => {
+test('uses printDot to emit the dependency graph', async t => {
     t.plan(2);
 
     const cliArgs = {};
 
-    main(cliArgs, t.context);
+    await main(cliArgs, t.context);
 
     const printDot = t.context.printDot;
     t.true(printDot.calledWith(t.context.parseImportsResult));

@@ -2,6 +2,7 @@ Feature: js-module-walker supports several formats in which it presents its resu
 
   Background:
     Given a directory named "source"
+    And a directory named "result"
     And a file named "source/file2.js" with:
     """
     import stuff from './sub/file1';
@@ -21,5 +22,27 @@ Feature: js-module-walker supports several formats in which it presents its resu
       "file2.js" -> "sub/file1.js"
       "file2.js" -> "fs"
       "sub/file1.js" -> "file2.js"
+    }
+    """
+
+  Scenario: The result will be written into a file if the --output option is provided
+    When I run `js-module-walker --output ./result/dependencies.dot ./source/file2.js`
+    Then the file "result/dependencies.dot" should exist
+    And the file "result/dependencies.dot" should contain:
+    """
+    digraph dependencies {
+      "file2.js" -> "sub/file1.js"
+      "file2.js" -> "fs"
+    }
+    """
+
+  Scenario: The result will be written into a file if the -o option is provided
+    When I run `js-module-walker -o ./result/dependencies.dot ./source/file2.js`
+    Then the file "result/dependencies.dot" should exist
+    And the file "result/dependencies.dot" should contain:
+    """
+    digraph dependencies {
+      "file2.js" -> "sub/file1.js"
+      "file2.js" -> "fs"
     }
     """
