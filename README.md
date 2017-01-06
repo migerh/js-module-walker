@@ -1,19 +1,61 @@
 # js-module-walker
 
-A dependency analyser for js projects using es6 modules.
+[![Build Status](https://travis-ci.org/migerh/js-module-walker.svg?branch=master)](https://travis-ci.org/migerh/js-module-walker)
+[![Code Climate](https://codeclimate.com/github/migerh/js-module-walker/badges/gpa.svg)](https://codeclimate.com/github/migerh/js-module-walker)
+[![Test Coverage](https://codeclimate.com/github/migerh/js-module-walker/badges/coverage.svg)](https://codeclimate.com/github/migerh/js-module-walker/coverage)
 
-# Usage
+A dependency analyzer for ECMAScript projects that use es6 modules.
 
-This is still work in progress, for now you have to clone this repository and first
-install all dependencies and install into your global node modules:
+## Installation
 
+```bash
+# npm install -g @migerh/js-module-walker
 ```
-$ npm install
-# npm install -g .
+
+## Usage
+
+Invoke with `--help` or `-h` to get up to date information of the accepted input parameters:
+
+```bash
+  Usage: js-module-walker [options] <files>
+
+  Options:
+
+    -h, --help           output usage information
+    -o, --output [file]  save output in file
+    --find-cycles        detect and highlight cyclic dependencies
+    --ignore-packages    ignore dependencies into packages from e.g. node modules
 ```
 
-Then you can analyze your project with
+Examples:
 
+```bash
+$ js-module-walker ./path/to/your/js-project
+$ js-module-walker --ignore-packages --output /tmp/dependencies.dot ./path/to/js-files
 ```
-$ js-module-walker <path/to/your/project/root> > graph.dot
+
+### js-module-walker
+
+An analysis of this very project as of d8636e14 produces the graph below
+
+```bash
+$ js-module-walker index.js ./lib | dot -o./examples/js-module-walker-d8636e14.png -T png
 ```
+
+![js-module-walker example graph](examples/js-module-walker-d8636e14.png)
+
+
+### [4minitz](https://github.com/4minitz/4minitz)
+
+An open source webapp for meeting minutes; version https://github.com/4minitz/4minitz/commit/215091a7d.
+The analysis is restricted to the client side modules.
+
+```bash
+$ js-module-walker --find-cycles --ignore-packages ./client ./lib ./imports | dot -Tpng -o./examples/4minitz-client-w-cycles-wo-packages-215091a7d.png
+```
+
+Graph: [4minitz dependency graph](examples/4minitz-client-w-cycles-wo-packages-215091a7d.png)
+
+## License
+
+This project is licensed under the terms of the MIT license. See the [LICENSE](LICENSE) file for more information.
