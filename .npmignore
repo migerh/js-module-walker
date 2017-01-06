@@ -4,3 +4,4 @@ tmp/
 .nyc_output/
 coverage/
 npm-debug.log
+examples/
