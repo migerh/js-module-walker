@@ -15,6 +15,7 @@ import {printDot} from './lib/printDot';
 cli.arguments('<files>', 'Files or folders containing files of the project to analyze')
     .option('-o, --output [file]', 'save output in file')
     .option('--find-cycles', 'detect and highlight cyclic dependencies')
+    .option('--ignore-packages', 'ignore dependencies into packages from e.g. node modules')
     .parse(process.argv);
 
 function handleError(error) {

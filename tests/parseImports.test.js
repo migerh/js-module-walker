@@ -49,3 +49,16 @@ test('returns an array with objects for every input file with imports', t => {
         t.true(output[0].file === file.slice(2) || output[1].file === file.slice(2));
     }
 });
+
+test('ignores packages if the ignorePackages is set to true', t => {
+    t.plan(2);
+
+    const input = _.keys(testPackages),
+        baseDir = './',
+        ignorePackages = true;
+    const output = parseImports(input, baseDir, ignorePackages);
+
+    for (const entry of output) {
+        t.deepEqual(entry.imports, []);
+    }
+});
