@@ -48,3 +48,14 @@ test('#fromCLI result contain undefined output file if none is given', t => {
     t.true(_.has('output', result));
     t.is(result.output, undefined);
 });
+
+test('#fromCLI accepts the --find-cycles flag', t => {
+    t.plan(2);
+
+    const expectedOutput = true,
+        cliArgs = {...t.context.cliArgs, findCycles: true},
+        result = loadConfigFromCLI(cliArgs);
+
+    t.true(_.has('findCycles', result));
+    t.is(result.findCycles, expectedOutput);
+});

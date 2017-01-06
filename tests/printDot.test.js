@@ -1,16 +1,20 @@
 import test from 'ava';
 import _ from 'lodash/fp';
-import {WritableStreamBuffer} from 'stream-buffers';
 
 import {printDot} from '../lib/printDot';
 
 test.beforeEach(t => {
+    let buf = '';
     t.context = _.merge(t.context, {
-        buffer: new WritableStreamBuffer()
+        buffer: {
+            getBuffer: () => buf,
+            write: input => buf += input,
+            on: (e, handler) => e === 'finish' ? handler() : ''
+        }
     });
 });
 
-test('converts the dependency list into a directed graph in graphviz dot format', t => {
+test('converts the dependency list into a directed graph in graphviz dot format', async t => {
     t.plan(1);
 
     const input = [{file: 'file.js', imports: ['import1.js', 'import2.js']}],
@@ -20,7 +24,25 @@ test('converts the dependency list into a directed graph in graphviz dot format'
 }
 `;
 
-    printDot(input, t.context.buffer);
+    await printDot(input, t.context.buffer);
 
-    t.is(t.context.buffer.getContentsAsString('utf8'), expectedOutput);
+    t.is(t.context.buffer.getBuffer(), expectedOutput);
+});
+
+test('appends a property if an edge formatter is provided', async t => {
+    t.plan(1);
+
+    const inputGraph = [{file: 'file.js', imports: ['import1.js', 'import2.js']}],
+        inputFormatters = [{
+            formatEdge: ([from, to]) => to === 'import1.js' ? 'color=black' : ''
+        }],
+        expectedOutput = `digraph dependencies {
+  "file.js" -> "import1.js" [color=black]
+  "file.js" -> "import2.js"
+}
+`;
+
+    await printDot(inputGraph, t.context.buffer, inputFormatters);
+
+    t.is(t.context.buffer.getBuffer(), expectedOutput);
 });

@@ -3,6 +3,7 @@ import sinon from 'sinon';
 import _ from 'lodash/fp';
 
 import main from '../lib/main';
+import {Cycles} from "../lib/cycles";
 
 test.beforeEach(t => {
     const configuration = {
@@ -84,5 +85,21 @@ test('uses printDot to emit the dependency graph', async t => {
 
     const printDot = t.context.printDot;
     t.true(printDot.calledWith(t.context.parseImportsResult));
+    t.true(printDot.calledOnce);
+});
+
+test('uses Cycles to detect cycles if --find-cycles is set', async t => {
+    t.plan(2);
+
+    const cliArgs = {};
+    t.context.loadConfigFromCLI.returns({paths: ['some-path'], findCycles: true});
+
+    await main(cliArgs, t.context);
+
+    const printDot = t.context.printDot,
+        spyCall = printDot.getCall(0),
+        cyclesEmitter = spyCall.args[2][0];
+
+    t.true(cyclesEmitter instanceof Cycles);
     t.true(printDot.calledOnce);
 });
