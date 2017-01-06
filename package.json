@@ -6,7 +6,8 @@
   "scripts": {
     "build": "./node_modules/.bin/babel ./ --ignore build,node_modules,tests,feature,coverage,tmp --out-dir ./build",
     "start": "./node_modules/.bin/babel-node index.js",
-    "test": "./tests.sh"
+    "test": "./tests.sh",
+    "prepublish": "npm run build"
   },
   "bin": {
     "js-module-walker": "./build/index.js"
@@ -63,6 +64,7 @@
   "author": "Michael Gerhaeuser <michael.gerhaeuser@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "babel-runtime": "^6.20.0",
     "commander": "^2.9.0",
     "lodash": "^4.17.3"
   },
