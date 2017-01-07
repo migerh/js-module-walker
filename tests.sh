@@ -7,7 +7,6 @@ UNIT=$?
 
 # end2end tests
 
-npm run build
 npm link
 cucumber
 END2END=$?
