@@ -15,8 +15,6 @@ test.beforeEach(t => {
 });
 
 test('converts the dependency list into a directed graph in graphviz dot format', async t => {
-    t.plan(1);
-
     const input = [{file: 'file.js', imports: ['import1.js', 'import2.js']}],
         expectedOutput = `digraph dependencies {
   "file.js" -> "import1.js"
@@ -30,8 +28,6 @@ test('converts the dependency list into a directed graph in graphviz dot format'
 });
 
 test('appends a property if an edge formatter is provided', async t => {
-    t.plan(1);
-
     const inputGraph = [{file: 'file.js', imports: ['import1.js', 'import2.js']}],
         inputFormatters = [{
             formatEdge: ([from, to]) => to === 'import1.js' ? 'color=black' : ''

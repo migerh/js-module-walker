@@ -26,8 +26,6 @@ test.before(() => {
 });
 
 test('#collect lets files pass through', t => {
-    t.plan(1);
-
     const input = ['some-file'],
         expectedOutput = input;
 
@@ -37,8 +35,6 @@ test('#collect lets files pass through', t => {
 });
 
 test('#collect discards non-existing files or folders', t => {
-    t.plan(1);
-
     const input = ['invalid'],
         expectedOutput = [];
 
@@ -48,8 +44,6 @@ test('#collect discards non-existing files or folders', t => {
 });
 
 test('#collect result contains all files fs#readdir returns for the input folder', t => {
-    t.plan(1);
-
     const input = ['some-dir'],
         expectedOutput = 'some-dir/file1.js';
 
@@ -59,8 +53,6 @@ test('#collect result contains all files fs#readdir returns for the input folder
 });
 
 test('#collect recursively collects all files fs#readdir returns', t => {
-    t.plan(4);
-
     const input = ['some-dir'],
         expectedOutput = ['some-dir/some-sub-dir/file2.js', 'some-dir/some-sub-dir/file3.js', 'some-dir/file1.js'];
 
@@ -74,8 +66,6 @@ test('#collect recursively collects all files fs#readdir returns', t => {
 });
 
 test('#collect returns nothing if nothing is provided', t => {
-    t.plan(1);
-
     const input = [],
         expectedOutput = input;
 
@@ -85,8 +75,6 @@ test('#collect returns nothing if nothing is provided', t => {
 });
 
 test('#findBaseDir finds the common base directory of all the given files', t => {
-    t.plan(1);
-
     const input = ['/some/dir/file1.js', '/some/dir/sub/file2.js'],
         expectedOutput = '/some/dir';
 
@@ -96,8 +84,6 @@ test('#findBaseDir finds the common base directory of all the given files', t =>
 });
 
 test('#findBaseDir returns "/" if no files are given', t => {
-    t.plan(1);
-
     const input = [],
         expectedOutput = '/';
 
@@ -107,8 +93,6 @@ test('#findBaseDir returns "/" if no files are given', t => {
 });
 
 test('#findBaseDir returns the directory of a single file', t => {
-    t.plan(1);
-
     const input = ['/some/source/file.js'],
         expectedOutput = '/some/source';
 

@@ -25,8 +25,6 @@ test.before(() => {
 
 _.keys(localTestFiles).map(file => {
     test(`finds imports of ${file}`, t => {
-        t.plan(1);
-
         const input = [file],
             baseDir = './',
             outputFilename = file.slice(2),
@@ -39,8 +37,6 @@ _.keys(localTestFiles).map(file => {
 });
 
 test('returns an array with objects for every input file with imports', t => {
-    t.plan(2);
-
     const input = _.keys(testPackages),
         baseDir = './';
     const output = parseImports(input, baseDir);

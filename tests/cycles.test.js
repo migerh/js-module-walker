@@ -36,8 +36,6 @@ test.beforeEach('simple input graph', t => {
 });
 
 test('#find detects trivial cycles', t => {
-    t.plan(1);
-
     const expectedOutput = [['file1.js', 'file2.js'], ['file2.js', 'file1.js']];
 
     const cycles = new Cycles(t.context.trivialCycle),
@@ -47,8 +45,6 @@ test('#find detects trivial cycles', t => {
 });
 
 test('#find detects nontrivial cycles', t => {
-    t.plan(1);
-
     const expectedOutput = [['file1.js', 'file2.js', 'file3.js', 'file4.js'],
         ['file2.js', 'file3.js', 'file4.js', 'file1.js'],
         ['file3.js', 'file4.js', 'file1.js', 'file2.js'],
@@ -61,8 +57,6 @@ test('#find detects nontrivial cycles', t => {
 });
 
 test('#find determines a flattened list of cyclic edges', t => {
-    t.plan(1);
-
     const expectedOutput = [
         ['file1.js', 'file2.js'], ['file2.js', 'file3.js'],
         ['file3.js', 'file4.js'], ['file4.js', 'file1.js']];
@@ -74,8 +68,6 @@ test('#find determines a flattened list of cyclic edges', t => {
 });
 
 test('#find ignores non-local imports', t => {
-    t.plan(1);
-
     const expectedOutput = [['file1.js', 'file2.js'], ['file2.js', 'file1.js']];
 
     const cycles = new Cycles(t.context.nonLocalPackage),
@@ -85,8 +77,6 @@ test('#find ignores non-local imports', t => {
 });
 
 test('#find is not broken by cycles that do not involve the top level file', t => {
-    t.plan(1);
-
     const deps = [{
             file: 'file1.js',
             imports: ['file2.js']
@@ -106,8 +96,6 @@ test('#find is not broken by cycles that do not involve the top level file', t =
 });
 
 test('#filenameToIndex finds the correct index in the dependencies list to a given file', t => {
-    t.plan(1);
-
     const input = 'file2.js',
         expectedOutput = 1;
 
@@ -118,8 +106,6 @@ test('#filenameToIndex finds the correct index in the dependencies list to a giv
 });
 
 test('#filenameToIndex returns -1 if there is no imports list for this file', t => {
-    t.plan(1);
-
     const input = 'not-a-source-file.js',
         expectedOutput = -1;
 
@@ -130,8 +116,6 @@ test('#filenameToIndex returns -1 if there is no imports list for this file', t 
 });
 
 test('#isSourceFile returns true if there is an entry for the given file name', t => {
-    t.plan(1);
-
     const input = 'file2.js',
         expectedOutput = true;
 
@@ -142,8 +126,6 @@ test('#isSourceFile returns true if there is an entry for the given file name', 
 });
 
 test('#isSourceFile returns false if there is no entry for the given file', t => {
-    t.plan(1);
-
     const input = 'not-a-source-file.js',
         expectedOutput = false;
 
@@ -154,8 +136,6 @@ test('#isSourceFile returns false if there is no entry for the given file', t =>
 });
 
 test('#importsOf returns the list of imports of a given file', t => {
-    t.plan(1);
-
     const input = 'file2.js',
         expectedOutput = ['file1.js'];
 
@@ -166,8 +146,6 @@ test('#importsOf returns the list of imports of a given file', t => {
 });
 
 test('#importsOf returns an empty array if there are no imports for the given file', t => {
-    t.plan(1);
-
     const input = 'not-a-source-file.js',
         expectedOutput = [];
 
@@ -178,8 +156,6 @@ test('#importsOf returns an empty array if there are no imports for the given fi
 });
 
 test('#formatEdge returns red color for edges that are part of a cycle', t => {
-    t.plan(1);
-
     const input = ['file1.js', 'file2.js'],
         expectedOutput = 'color=red';
 
@@ -192,8 +168,6 @@ test('#formatEdge returns red color for edges that are part of a cycle', t => {
 });
 
 test('#formatEdge returns an empty string for edges that are not part of a cycle', t => {
-    t.plan(1);
-
     const input = ['file1.js', 'fs'],
         expectedOutput = '';
 

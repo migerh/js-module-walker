@@ -12,16 +12,12 @@ test.beforeEach(t => {
 });
 
 test('#fromCLI returns an object', t => {
-    t.plan(1);
-
     const result = loadConfigFromCLI();
 
     t.true(_.isObject(result));
 });
 
 test('#fromCLI result contains the path if one is given', t => {
-    t.plan(2);
-
     const expectedPath = ['somePath'],
         result = loadConfigFromCLI(t.context.cliArgs);
 
@@ -30,8 +26,6 @@ test('#fromCLI result contains the path if one is given', t => {
 });
 
 test('#fromCLI result contains an output file if one is given', t => {
-    t.plan(2);
-
     const expectedOutput = './target/out.dot',
         cliArgs = {...t.context.cliArgs, output: './target/out.dot'},
         result = loadConfigFromCLI(cliArgs);
@@ -41,8 +35,6 @@ test('#fromCLI result contains an output file if one is given', t => {
 });
 
 test('#fromCLI result contain undefined output file if none is given', t => {
-    t.plan(2);
-
     const result = loadConfigFromCLI(t.context.cliArgs);
 
     t.true(_.has('output', result));
@@ -50,8 +42,6 @@ test('#fromCLI result contain undefined output file if none is given', t => {
 });
 
 test('#fromCLI accepts the --find-cycles flag', t => {
-    t.plan(2);
-
     const expectedOutput = true,
         cliArgs = {...t.context.cliArgs, findCycles: true},
         result = loadConfigFromCLI(cliArgs);

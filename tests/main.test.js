@@ -27,8 +27,6 @@ test.beforeEach(t => {
 });
 
 test('loads configuration with ConfigurationLoader', async t => {
-    t.plan(2);
-
     const cliArgs = {args: ['somePath']};
 
     await main(cliArgs, t.context);
@@ -53,8 +51,6 @@ test('throws an exception if no path is returned by the ConfigurationLoader', as
 });
 
 test('uses collect to collect source files', async t => {
-    t.plan(2);
-
     const cliArgs = {};
 
     await main(cliArgs, t.context);
@@ -65,8 +61,6 @@ test('uses collect to collect source files', async t => {
 });
 
 test('uses import parser to collect imports', async t => {
-    t.plan(2);
-
     const cliArgs = {};
 
     await main(cliArgs, t.context);
@@ -77,8 +71,6 @@ test('uses import parser to collect imports', async t => {
 });
 
 test('uses printDot to emit the dependency graph', async t => {
-    t.plan(2);
-
     const cliArgs = {};
 
     await main(cliArgs, t.context);
@@ -89,8 +81,6 @@ test('uses printDot to emit the dependency graph', async t => {
 });
 
 test('uses Cycles to detect cycles if --find-cycles is set', async t => {
-    t.plan(2);
-
     const cliArgs = {};
     t.context.loadConfigFromCLI.returns({paths: ['some-path'], findCycles: true});
 

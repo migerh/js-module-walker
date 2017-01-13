@@ -29,8 +29,6 @@ test.afterEach(t => {
 });
 
 test('returns stdout stream if no output file is configured', async t => {
-    t.plan(3);
-
     const outFile = undefined,
         // process.stdout stream has file descriptor equal to 1
         stdoutFileDescriptor = 1;
@@ -46,8 +44,6 @@ test('returns stdout stream if no output file is configured', async t => {
 });
 
 test('returns file stream if output file is configured', async t => {
-    t.plan(2);
-
     t.context.fakeStream.on.withArgs('open').callsArg(1);
 
     const output = await createEmitter(t.context.filename);
