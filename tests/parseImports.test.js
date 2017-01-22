@@ -9,7 +9,7 @@ const localTestFiles = {
     "./file-local-import-from-default.js": `import stuff from './local/file';`,
     "./file-import-multiple-whitespaces.js": `import   stuff  from    './local/file';`,
     "./file-local-import.js": `import './local/file'`,
-    "./file-local-import-from-as-default.js": `import stuff as s from './local/file'`,
+    "./file-local-import-from-as-default.js": `import * as s from './local/file'`,
     "./file-local-import-from-named.js": `import {stuff} from './local/file'`,
     "./file-local-import-from-named-as.js": `import {stuff as s} from './local/file'`
 };
