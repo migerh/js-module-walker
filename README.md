@@ -51,7 +51,7 @@ An open source webapp for meeting minutes; version https://github.com/4minitz/4m
 The analysis is restricted to the client side modules.
 
 ```bash
-$ js-module-walker --find-cycles --ignore-packages ./client ./lib ./imports | dot -Tpng -o./examples/4minitz-client-w-cycles-wo-packages-215091a7d.png
+$ js-module-walker --find-cycles --ignore-packages ./client/**/*.js ./lib/**/*.js ./imports/**/*.js | dot -Tpng -o./examples/4minitz-client-w-cycles-wo-packages-215091a7d.png
 ```
 
 Graph: [4minitz dependency graph](examples/4minitz-client-w-cycles-wo-packages-215091a7d.png)
