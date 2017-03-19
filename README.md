@@ -56,6 +56,10 @@ $ js-module-walker --find-cycles --ignore-packages ./client/**/*.js ./lib/**/*.j
 
 Graph: [4minitz dependency graph](examples/4minitz-client-w-cycles-wo-packages-215091a7d.png)
 
+## Contributors
+
+@yogan
+
 ## License
 
 This project is licensed under the terms of the MIT license. See the [LICENSE](LICENSE) file for more information.
