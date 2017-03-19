@@ -58,7 +58,7 @@ Graph: [4minitz dependency graph](examples/4minitz-client-w-cycles-wo-packages-2
 
 ## Contributors
 
-@yogan
+[@yogan](https://github.com/yogan)
 
 ## License
 
