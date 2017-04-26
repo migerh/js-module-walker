@@ -1,6 +1,6 @@
 {
   "name": "@migerh/js-module-walker",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Analyze dependencies of es6 module based js projects",
   "main": "index.js",
   "scripts": {
