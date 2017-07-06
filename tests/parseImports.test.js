@@ -20,7 +20,7 @@ const testPackages = {
 };
 
 test.before(() => {
-    sinon.stub(fs, 'readFileSync', filename => localTestFiles[filename] || testPackages[filename] || '');
+    sinon.stub(fs, 'readFileSync').callsFake(filename => localTestFiles[filename] || testPackages[filename] || '');
 });
 
 _.keys(localTestFiles).map(file => {

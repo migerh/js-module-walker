@@ -9,7 +9,7 @@ import {createEmitter} from '../lib/emitterFactory';
 let streams = {};
 
 test.before(() => {
-    sinon.stub(fs, 'createWriteStream', filename => streams[filename]);
+    sinon.stub(fs, 'createWriteStream').callsFake(filename => streams[filename]);
 });
 
 test.beforeEach(t => {

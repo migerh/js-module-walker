@@ -6,7 +6,7 @@ import _ from 'lodash/fp';
 import {collect, findBaseDir} from '../lib/collectInput';
 
 test.before(() => {
-    sinon.stub(fs, 'statSync', item => {
+    sinon.stub(fs, 'statSync').callsFake(item => {
         const isFile = item.indexOf('file') > -1,
             statFile = {isDirectory: () => false, isFile: () => true},
             statDirectory = {isDirectory: () => true, isFile: () => false};
@@ -14,7 +14,7 @@ test.before(() => {
         return isFile ? statFile : statDirectory;
     });
 
-    sinon.stub(fs, 'readdirSync', dir => {
+    sinon.stub(fs, 'readdirSync').callsFake(dir => {
         if (dir.indexOf('sub') > -1) {
             return ['file2.js', 'file3.js'];
         }
@@ -22,7 +22,7 @@ test.before(() => {
         return ['some-sub-dir', 'file1.js'];
     });
 
-    sinon.stub(fs, 'existsSync', item => item.indexOf('invalid') === -1);
+    sinon.stub(fs, 'existsSync').callsFake(item => item.indexOf('invalid') === -1);
 });
 
 test('#collect lets files pass through', t => {
