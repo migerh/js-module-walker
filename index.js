@@ -5,12 +5,12 @@
 // has to be able to use process.exit()
 /* eslint no-process-exit: 0 */
 
-import cli from 'commander';
-import main from './lib/main';
-import {loadConfigFromCLI} from './lib/configuration';
-import {collect,findBaseDir} from './lib/collectInput';
-import {parseImports} from './lib/parseImports';
-import {printDot} from './lib/printDot';
+const cli = require('commander'),
+    main = require('./lib/main'),
+    {loadConfigFromCLI} = require('./lib/configuration'),
+    {collect,findBaseDir} = require('./lib/collectInput'),
+    {parseImports} = require('./lib/parseImports'),
+    {printDot} = require('./lib/printDot');
 
 cli.arguments('<files>', 'Files or folders containing files of the project to analyze')
     .option('-o, --output [file]', 'save output in file')
