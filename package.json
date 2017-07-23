@@ -67,7 +67,8 @@
     "babel-runtime": "^6.23.0",
     "babylon": "^6.17.4",
     "commander": "^2.11.0",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "ramda": "^0.24.1"
   },
   "devDependencies": {
     "ava": "^0.20.0",

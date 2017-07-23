@@ -11,12 +11,16 @@ const localTestFiles = {
     "./file-local-import.js": `import './local/file'`,
     "./file-local-import-from-as-default.js": `import * as s from './local/file'`,
     "./file-local-import-from-named.js": `import {stuff} from './local/file'`,
-    "./file-local-import-from-named-as.js": `import {stuff as s} from './local/file'`
+    "./file-local-import-from-named-as.js": `import {stuff as s} from './local/file'`,
+
+    "./file-local-require.js": `require('./local/file');`
 };
 
 const testPackages = {
     "./file-package-import-from-default.js": `import fs from 'fs'`,
-    "./file-package-import.js": `import 'fs';`
+    "./file-package-import.js": `import 'fs';`,
+
+    "./file-require-package.js": `require('fs');`
 };
 
 test.before(() => {
@@ -42,12 +46,15 @@ test('returns an array with objects for every input file with imports', t => {
     const output = parseImports(input, baseDir);
 
     for (const file of input) {
-        t.true(output[0].file === file.slice(2) || output[1].file === file.slice(2));
+        t.true(
+            output[0].file === file.slice(2) ||
+            output[1].file === file.slice(2) ||
+            output[2].file === file.slice(2));
     }
 });
 
 test('ignores packages if the ignorePackages is set to true', t => {
-    t.plan(2);
+    t.plan(3);
 
     const input = _.keys(testPackages),
         baseDir = './',
