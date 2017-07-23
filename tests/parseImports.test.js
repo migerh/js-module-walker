@@ -1,7 +1,7 @@
 const test = require('ava'),
-    fs = require('fs'),
     sinon = require('sinon'),
     _ = require('lodash/fp'),
+    fs = require('fs'),
     {parseImports} = require('../lib/parseImports');
 
 const localTestFiles = {

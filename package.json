@@ -1,16 +1,14 @@
 {
   "name": "@migerh/js-module-walker",
   "version": "0.2.0",
-  "description": "Analyze dependencies of es6 module based js projects",
+  "description": "Analyze and understand dependencies in js projects",
   "main": "index.js",
   "scripts": {
-    "build": "./node_modules/.bin/babel ./ --ignore build,node_modules,tests,feature,coverage,tmp --out-dir ./build",
-    "start": "./node_modules/.bin/babel-node index.js",
-    "test": "./tests.sh",
-    "prepublish": "npm run build"
+    "start": "node index.js",
+    "test": "./tests.sh"
   },
   "bin": {
-    "js-module-walker": "./build/index.js"
+    "js-module-walker": "./index.js"
   },
   "ava": {
     "files": [
@@ -64,7 +62,6 @@
   "author": "Michael Gerhaeuser <michael.gerhaeuser@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "babel-runtime": "^6.23.0",
     "babylon": "^6.17.4",
     "commander": "^2.11.0",
     "lodash": "^4.17.4",
