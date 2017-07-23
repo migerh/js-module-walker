@@ -1,7 +1,6 @@
-import test from 'ava';
-import _ from 'lodash/fp';
-
-import {loadConfigFromCLI} from '../lib/configuration';
+const test = require('ava'),
+    _ = require('lodash/fp'),
+    {loadConfigFromCLI} = require('../lib/configuration');
 
 test.beforeEach(t => {
     t.context = _.merge(t.context, {

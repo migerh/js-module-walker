@@ -1,9 +1,8 @@
-import test from 'ava';
-import fs from 'fs';
-import sinon from 'sinon';
-import _ from 'lodash/fp';
-
-import {collect, findBaseDir} from '../lib/collectInput';
+const test = require('ava'),
+    fs = require('fs'),
+    sinon = require('sinon'),
+    _ = require('lodash/fp'),
+    {collect, findBaseDir} = require('../lib/collectInput');
 
 test.before(() => {
     sinon.stub(fs, 'statSync').callsFake(item => {

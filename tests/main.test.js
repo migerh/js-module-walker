@@ -1,9 +1,8 @@
-import test from 'ava';
-import sinon from 'sinon';
-import _ from 'lodash/fp';
-
-import main from '../lib/main';
-import {Cycles} from "../lib/cycles";
+const test = require('ava'),
+    sinon = require('sinon'),
+    _ = require('lodash/fp'),
+    main = require('../lib/main'),
+    {Cycles} = require('../lib/cycles');
 
 test.beforeEach(t => {
     const configuration = {

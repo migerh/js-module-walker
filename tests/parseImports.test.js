@@ -1,9 +1,8 @@
-import test from 'ava';
-import sinon from 'sinon';
-import _ from 'lodash/fp';
-
-import fs from 'fs';
-import {parseImports} from '../lib/parseImports';
+const test = require('ava'),
+    fs = require('fs'),
+    sinon = require('sinon'),
+    _ = require('lodash/fp'),
+    {parseImports} = require('../lib/parseImports');
 
 const localTestFiles = {
     "./file-local-import-from-default.js": `import stuff from './local/file';`,

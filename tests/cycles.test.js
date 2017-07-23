@@ -1,7 +1,6 @@
-import test from 'ava';
-import _ from 'lodash/fp';
-
-import {Cycles} from '../lib/cycles';
+const test = require('ava'),
+    _ = require('lodash/fp'),
+    {Cycles} = require('../lib/cycles');
 
 test.beforeEach('simple input graph', t => {
     t.context = _.merge(t.context, {

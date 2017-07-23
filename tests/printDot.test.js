@@ -1,7 +1,6 @@
-import test from 'ava';
-import _ from 'lodash/fp';
-
-import {printDot} from '../lib/printDot';
+const test = require('ava'),
+    _ = require('lodash/fp'),
+    {printDot} = require('../lib/printDot');
 
 test.beforeEach(t => {
     let buf = '';

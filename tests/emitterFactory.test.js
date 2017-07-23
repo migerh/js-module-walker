@@ -1,10 +1,9 @@
-import test from 'ava';
-import _ from 'lodash/fp';
-import sinon from 'sinon';
-import uuid from 'uuid/v4';
-
-import fs from 'fs';
-import {createEmitter} from '../lib/emitterFactory';
+const test = require('ava'),
+    sinon = require('sinon'),
+    fs = require('fs'),
+    _ = require('lodash/fp'),
+    uuid = require('uuid/v4'),
+    {createEmitter} = require('../lib/emitterFactory');
 
 let streams = {};
 
