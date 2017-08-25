@@ -1,6 +1,6 @@
 {
   "name": "@migerh/js-module-walker",
-  "version": "0.2.0",
+  "version": "0.3.0-unstable",
   "description": "Analyze and understand dependencies in js projects",
   "main": "index.js",
   "scripts": {
