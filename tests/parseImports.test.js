@@ -53,8 +53,6 @@ test('returns an array with objects for every input file with imports', t => {
 });
 
 test('ignores packages if the ignorePackages is set to true', t => {
-    t.plan(3);
-
     const input = _.keys(testPackages),
         baseDir = './',
         ignorePackages = true;
@@ -63,4 +61,7 @@ test('ignores packages if the ignorePackages is set to true', t => {
     for (const entry of output) {
         t.deepEqual(entry.imports, []);
     }
+
+    const expectedNumberOfEntries = 3;
+    t.is(output.length, expectedNumberOfEntries);
 });
