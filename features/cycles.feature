@@ -6,7 +6,7 @@ Feature: js-module-walker can find cyclic dependencies
     And a file named "source/file2.js" with:
     """
     import stuff from './sub/file1';
-    import stuff from './sub/file3';
+    import stuff2 from './sub/file3';
     import fs from 'fs';
     """
     And a directory named "source/sub"

@@ -48,7 +48,7 @@
   "author": "Michael Gerhaeuser <michael.gerhaeuser@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "babylon": "^6.18.0",
+    "@babel/parser": "^7.5.5",
     "commander": "^3.0.0",
     "lodash": "^4.17.15",
     "ramda": "^0.26.1"
